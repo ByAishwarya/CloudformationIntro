@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-# Best practice - AWS documentation recommends 2010-09-09
+# about date - AWS documentation recommends 2010-09-09
 # Future-proofing - If AWS ever releases a new version, your template explicitly states which version it was written for
 
 Description: 'Simple CloudFormation template for EC2 instance with Security Group in Ireland region'
