@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+# Best practice - AWS documentation recommends 2010-09-09
+# Future-proofing - If AWS ever releases a new version, your template explicitly states which version it was written for
+
+Description: 'Simple CloudFormation template for EC2 instance with Security Group in Ireland region'
+
+Resources:
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: '0.0.0.0/0'
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: '0.0.0.0/0'
+      Tags:
+        - Key: Name
+          Value: AishwaryaEC2SGCloudFormation
+
+  # EC2 Instance
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-067dfb672a96f8842
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: AishwaryaEC2CloudFormation
